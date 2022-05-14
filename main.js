@@ -7,11 +7,15 @@ const url = 'https://54.uz/works.json'
  * That means My algorithm works in O(1) time
  */
 
+const start = process.hrtime();
+
+
 /**
- * 1 - Method with async/await
+ * 1 - Method with async/await (for more data calculating)
+ * Time: 18.00 ms
  */
 
-// const getData = async () => {
+// (async () => {
 //     try{
 //         const data = await axios.get(url)
 //         const works = data.data.works
@@ -20,19 +24,21 @@ const url = 'https://54.uz/works.json'
 //     } catch (err) {
 //         console.log("Somethis Wrong: ", err.message)
 //     }
-// }
-
-// getData().then(e => console.log(e));
+// })().then(e => console.log(e));
 
 /**
- * 2 - Method with async/await
+ * 2 - Method with fetch/catch
+ * Time: 13.00 ms
  * */
 
-// axios.get(url)
-// .then(data => {
-//     const works = data.data.works
-//     const bonusIndex = works.findIndex((work) => work.payment.bonus > 1000) // TimeComplexity O(n)
-//     console.log(works[bonusIndex]);
-// })
-// .catch(err => console.log(err))
+axios.get(url)
+.then(data => {
+    const works = data.data.works
+    const bonusIndex = works.findIndex((work) => work.payment.bonus > 1000) // TimeComplexity O(n)
+    console.log(works[bonusIndex]);
+})
+.catch(err => console.log(err))
 
+const stop = process.hrtime(start)
+
+console.log(`Time execution ${(stop[0] * 1e9 + stop[1])/1e6}  ms`);
