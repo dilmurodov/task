@@ -1,0 +1,1 @@
+const url = 'https://54.uz/works.json'
