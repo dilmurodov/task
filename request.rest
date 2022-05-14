@@ -1,0 +1,3 @@
+# GET all data
+
+GET https://54.uz/works.json
